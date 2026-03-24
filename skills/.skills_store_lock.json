@@ -1,0 +1,119 @@
+{
+  "version": 1,
+  "skills": {
+    "minimax-coding-plan": {
+      "name": "MiniMax Coding Plan",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=minimax-coding-plan",
+      "source": "skillhub",
+      "version": "0.1.1"
+    },
+    "frontend-design-pro": {
+      "name": "Frontend Design Pro — 专业前端设计规范",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=frontend-design-pro",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "arc-free-worker-dispatch": {
+      "name": "Free Worker Dispatch",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=arc-free-worker-dispatch",
+      "source": "skillhub",
+      "version": "1.1.0"
+    },
+    "code-review": {
+      "name": "Code Review",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=code-review",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "frontend-design-extractor": {
+      "name": "Frontend Design Extractor",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=frontend-design-extractor",
+      "source": "skillhub",
+      "version": "1.0.1"
+    },
+    "xiucheng-self-improving-agent": {
+      "name": "Self Improving Agent",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=xiucheng-self-improving-agent",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "pdf-ocr-layout": {
+      "name": "pdf-ocr-layout",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=pdf-ocr-layout",
+      "source": "skillhub",
+      "version": "1.0.2"
+    },
+    "vue-expert-js": {
+      "name": "Vue Expert Js",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=vue-expert-js",
+      "source": "skillhub",
+      "version": "0.1.0"
+    },
+    "code": {
+      "name": "Code",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=code",
+      "source": "skillhub",
+      "version": "1.0.4"
+    },
+    "testing-workflow": {
+      "name": "Testing Workflow",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=testing-workflow",
+      "source": "skillhub",
+      "version": "0.1.0"
+    },
+    "requirements-analysis": {
+      "name": "requirements-analysis",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=requirements-analysis",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "prd": {
+      "name": "Prd",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=prd",
+      "source": "skillhub",
+      "version": "2.0.5"
+    },
+    "design-system-creation": {
+      "name": "Design System Creation",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=design-system-creation",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "testing-patterns": {
+      "name": "Testing Patterns",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=testing-patterns",
+      "source": "skillhub",
+      "version": "0.1.0"
+    },
+    "design-to-code": {
+      "name": "Design To Code",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=design-to-code",
+      "source": "skillhub",
+      "version": "1.0.0"
+    },
+    "intelligent-router": {
+      "name": "Intelligent Model Router",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=intelligent-router",
+      "source": "skillhub",
+      "version": "3.0.1"
+    },
+    "automation-workflows": {
+      "name": "Automation Workflows",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=automation-workflows",
+      "source": "skillhub",
+      "version": "0.1.0"
+    },
+    "agent-browser": {
+      "name": "Agent Browser",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=agent-browser",
+      "source": "skillhub",
+      "version": "0.2.0"
+    },
+    "brainstorming": {
+      "name": "Brainstorming",
+      "zip_url": "https://lightmake.site/api/v1/download?slug=brainstorming",
+      "source": "skillhub",
+      "version": "0.1.0"
+    }
+  }
+}
