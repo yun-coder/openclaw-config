@@ -17,8 +17,7 @@
 
 ## 浏览器控制
 - 使用 OpenClaw 内置 `openclaw browser` 命令操作浏览器（已配置 Edge）
-- **不要用** agent-browser（已卸载）
-- 原型抓取时优先用 `openclaw browser open/snapshot/screenshot/click`
+- 原型抓取时用 `openclaw browser open/snapshot/screenshot/click`
 
 ## 项目备忘
 - picasso-front 项目路径：`D:\workSpace\picasso-front\`
