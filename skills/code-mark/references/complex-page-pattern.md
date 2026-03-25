@@ -107,6 +107,10 @@ const handleDelete = async (row) => {
 
 ## create.vue — 表单页（新标签页）
 
+### create.vue — 表单页（新标签页）
+
+> ⚠️ **禁止使用 ViewDetail 组件**。详情/查看模式通过 Form 组件的 disabled 属性控制，schema 由 `isViewMode` 参数驱动。
+
 ```vue
 <!--
  @description {描述}
@@ -135,7 +139,7 @@ const [Form, formApi] = useVbenForm({
   commonConfig: { componentProps: { class: 'w-full' } },
   labelWidth: 120,
   layout: 'horizontal',
-  schema: computed(() => useFormSchema(pageType.value === 'detail', pageType.value)),
+  schema: computed(() => useFormSchema(isDetail.value, pageType.value)),
   showDefaultActions: false,
   wrapperClass: 'grid-cols-4',
 });
@@ -148,6 +152,7 @@ const buttons = computed(() => [
 onActivated(() => {
   initPageData();
   setTabTitle(pageTitle.value);
+  formApi.setState({ schema: useFormSchema(isDetail.value, pageType.value) });
   if (isEditMode.value && pageFormData.value && Object.keys(pageFormData.value).length > 0) {
     formApi.setValues(pageFormData.value);
   } else {
@@ -181,7 +186,51 @@ onMounted(() => {
 </template>
 ```
 
+### data.ts — isViewMode 模式控制
+
+```typescript
+// schema 中通过 isViewMode 控制 disabled
+export function useFormSchema(isViewMode: boolean = false, pageType?: string): VbenFormSchema[] {
+  return [
+    {
+      fieldName: 'name',
+      label: '名称',
+      component: 'Input',
+      componentProps: {
+        placeholder: '请输入名称',
+        disabled: isViewMode,  // 查看模式禁用
+      },
+      rules: isViewMode ? [] : 'required',
+    },
+    {
+      fieldName: 'remark',
+      label: '备注',
+      component: 'Textarea',
+      componentProps: {
+        placeholder: '请输入备注',
+        disabled: isViewMode,
+        rows: 3,
+      },
+    },
+  ];
+}
+
+// 子表格列根据 isViewMode 决定是否显示操作列
+export function useItemColumns(isViewMode: boolean = false): VxeTableGridOptions['columns'] {
+  const columns: VxeTableGridOptions['columns'] = [
+    { type: 'seq', title: '序号', width: 60, align: 'center', fixed: 'left' },
+    { field: 'name', title: '名称', minWidth: 140 },
+    // ✅ 用 visible 控制操作列
+    { title: '操作', width: 100, fixed: 'right', slots: { default: 'actions' }, visible: !isViewMode },
+  ];
+  return columns;
+}
+```
+
 ### 关键点
+- **不使用 ViewDetail**：查看模式通过 Form schema 的 disabled 属性实现
+- `useFormSchema(isViewMode)` 第一个参数控制字段 disabled 状态
+- `useItemColumns(isViewMode)` 控制子表格是否显示操作列
 - `usePagePersist` 的 `pageKey` 必须与 `pageFormStore.setFormData` 的 key 一致
 - `onActivated` 处理页签切换场景
 - `PageContainer` 提供返回按钮、标题、底部操作
