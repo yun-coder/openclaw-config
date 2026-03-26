@@ -4,6 +4,17 @@
 - **Git 操作**：配置文件（openclaw.json、skills/ 等）调整后需要同步提交到远程 git 仓库 `git@github.com:yun-coder/openclaw-config.git`（master 分支）。代码生成不需要 git 操作。
 - **API 地址**：后端 API 地址目前暂无，后续由用户提供。生成代码时使用占位地址即可，无需确认。
 
+## 模型配置 (2026-03-26)
+- **默认模型**：已从 `zai/glm-5-turbo` 调整为 `zai/glm-5`
+- **配置位置**：`C:\Users\admin\.openclaw\openclaw.json` → `agents.defaults.model.primary`
+
+## code-mark skill 调整记录 (2026-03-26)
+- **页面模式选择更智能**：不再默认使用表格，根据 PRD 和 UI 原型**自行判断**是否需要表格
+- **无表格场景**：纯配置/设置页面只用简单弹窗，不生成无用的 Grid
+- **树形结构**：使用 `treeConfig` 配置，如费用类目树
+- **原型交互抓取**：必须使用 `openclaw browser` 抓取原型中每个弹窗内容，不要猜测
+- 其他规则同 2026-03-25 版本
+
 ## code-mark skill 调整记录 (2026-03-25)
 - 路由配置：复杂页面生成时自动在 `router/routes/modules/{module}.ts` 追加路由，不覆盖已有
 - 禁用 ViewDetail 组件，用 Form disabled 控制

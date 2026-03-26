@@ -39,13 +39,31 @@ apps/web-antd/src/
 
 ## 页面模式选择
 
+> ⚠️ **重要：模板选择不是固定的！** 需要根据 PRD 和 UI 原型的实际输出**自行判断**是否需要表格。
+>
+> **判断规则：**
+> 1. **有表格的场景**：PRD 或原型中明确有数据列表、分页、筛选列表等需求
+> 2. **无表格的场景**：纯表单配置、单个弹窗表单、树形配置等**不需要列表展示**
+> 3. **树形结构**：费用类目、组织架构等树形数据，使用树形表格 `treeConfig`
+
 | 场景 | 模式 | 文件 |
 |------|------|------|
-| 字段少（<10），无子表格 | 简单弹窗 | `index.vue` + `modules/form.vue` |
-| 字段多或含子表格 | **复杂跳转页** | `index.vue` + `create.vue` |
+| 有表格+字段少（<10） | 简单弹窗+表格 | `index.vue`(含Grid) + `modules/form.vue` |
+| 有表格+字段多（≥10）或含子表格 | 复杂跳转页+表格 | `index.vue`(含Grid) + `create.vue` |
+| **无表格+纯配置/设置** | **简单弹窗（无Grid）** | `index.vue`(无Grid) + `modules/form.vue` |
+| 树形配置 | 树形表格 | `index.vue`(treeConfig) + `modules/form.vue` |
 
-> ⚠️ **默认使用复杂跳转页模式**，除非明确要求弹窗。含子表格的页面必须用跳转模式。
-> 所有表格（包括子表格）统一使用 `useVbenVxeGrid` 生成。
+### ❌ 不要默认生成表格
+除非满足以下条件之一，否则**不要**自动生成表格：
+- PRD 或原型中明确有列表页、筛选条件、数据表格
+- 接口返回的是列表数据（数组）而非单个对象
+- 操作包含"列表"、"查询"、"分页"等关键词
+
+### ✅ 原型交互识别
+- **必须使用 `openclaw browser` 命令抓取原型页面**
+- 原型中的弹窗内容**必须完整获取**，包括所有字段、按钮、交互
+- 点击原型中的按钮/链接，查看弹窗内容并生成对应代码
+- 原型中红色星号 * 的字段为必填项
 
 ## 通用规则
 
@@ -303,20 +321,40 @@ import { SvgSearchIcon } from '@vben/icons';
 ]"
 ```
 
-### 8. 原型识别规则
-- 识别原型时，原型链接中的页面**可以点击操作**，使用 agent-browser 抓取内容
+### 原型交互抓取规范（必须遵守）
+- **使用 `openclaw browser` 命令**抓取原型页面内容
+- 原型中点击按钮弹出的**每个弹窗都要单独抓取**
+- 弹窗内容必须与原型完全一致，包括：
+  - 字段名称、类型、布局
+  - 必填标识（红色星号）
+  - 按钮文字和位置
+  - 弹窗标题
 - 原型中标注**红色星号 * 的字段为必填项**，生成 schema 时需加 `rules: 'required'`
 - 必填项查看模式下 rules 清空为 `[]`
+- **不要猜测原型内容**，必须实际抓取
 
-### 4. 生成前执行规范扫描
-- 在生成代码前，**必须先按照本 skill 的 references/ 目录下的参考文件执行**，确保生成代码符合项目现有风格
-- **必读 `references/codebase-patterns.md`** — 包含项目高频组件、hooks、cellRender 渲染模式、表单组件类型等
-- 生成前检查清单：
-  1. 读取 `references/codebase-patterns.md` 了解项目高频模式
-  2. 读取 `references/api-pattern.md` 了解 API 规范
-  3. 读取 `references/complex-page-pattern.md` 或 `references/simple-page-pattern.md` 了解页面规范
-  4. 读取 `references/router-pattern.md` 了解路由规范
-  5. 扫描同模块已有代码（如 `views/knife/` 下其他页面）保持风格一致
+### 🚨 生成前必须执行
+
+1. **抓取原型交互**（必须！）：
+   ```bash
+   openclaw browser open <原型链接>
+   openclaw browser screenshot  # 截取页面
+   # 点击原型中的按钮/弹窗，继续截图
+   ```
+   - 原型中的**每个弹窗都要抓取**
+   - 确认弹窗内的字段、表单布局、按钮
+   - 不要基于"猜测"生成，要基于原型实际内容
+
+2. **读取项目参考文件**：
+   - 必读 `references/codebase-patterns.md` — 包含项目高频组件、hooks、cellRender 渲染模式
+   - 读取 `references/api-pattern.md` — 了解 API 规范
+   - 读取 `references/complex-page-pattern.md` 或 `references/simple-page-pattern.md` — 了解页面规范
+   - 读取 `references/router-pattern.md` — 了解路由规范
+   - 扫描同模块已有代码保持风格一致
+
+3. **根据原型判断页面模式**：
+   - 有列表/表格 → 使用 Grid + 弹窗
+   - 无列表/纯配置 → 简单弹窗即可，不要生成无用的 Grid
 
 ### 5. API 接口文档联调
 - 当用户提供了 API 接口文档地址时，需根据接口文档调整：
