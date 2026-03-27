@@ -33,3 +33,10 @@
 ## 项目备忘
 - picasso-front 项目路径：`D:\workSpace\picasso-front\`
 - 当前模块：`knife/check-out-with-return`（领用申领），已生成列表页、详情页、新增/编辑页
+
+## Agent 工作流程调整 (2026-03-27)
+- **QA 测试打工人**：暂停工作，除非必要走完整流程
+- **Web 开发打工人**：接到任务时必须先回复确认需求内容，不要直接生成代码
+
+## 待处理任务
+- **费用类目配置页面**（新增/编辑）：原型图 https://hub.axmax.cn/view/Qim3bkuP6y8o54n/
